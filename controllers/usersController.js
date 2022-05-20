@@ -18,7 +18,7 @@ const addUser = async (req, res, next) => {
 
   let insertedId
   try {
-    insertedId = await addUserDB(req.body.username).lastID
+    insertedId = (await addUserDB(req.body.username)).lastID
   } catch (err) {
     next(err)
   }

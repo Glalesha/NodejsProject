@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS Exercises (
 );
 `,
         )
-        .then(() => {})
         .catch((err) => console.log('exec err', err))
     })
     .catch((err) => console.log('open err', err))

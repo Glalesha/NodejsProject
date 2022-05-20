@@ -20,7 +20,7 @@ const addExercise = async (req, res, next) => {
   const { description, duration, date } = req.body
   const authorId = req.params._id
 
-  if (!moment(date, 'YYYY-MM-DD', true).isValid())
+  if (date && !moment(date, 'YYYY-MM-DD', true).isValid())
     return next(new HttpError({ message: `date in incorrect`, code: 400 }))
 
   const user = await getUserDB(authorId)
@@ -28,7 +28,7 @@ const addExercise = async (req, res, next) => {
 
   let insertedId
   try {
-    insertedId = await addExerciseDB(description, +duration, date ? date : moment().format('YYYY-MM-DD'), +authorId)
+    insertedId = (await addExerciseDB(description, +duration, date ? date : moment().format('YYYY-MM-DD'), +authorId))
       .lastID
   } catch (err) {
     return next(new HttpError({ message: err.message, code: 500 }))
