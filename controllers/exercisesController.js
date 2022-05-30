@@ -24,7 +24,7 @@ const addExercise = async (req, res, next) => {
     return next(new HttpError({ message: `date in incorrect`, code: 400 }))
 
   const user = await getUserDB(authorId)
-  if (!user) return next(new HttpError({ message: `User with id ${authorId} doesn't exist`, code: 400 }))
+  if (!user) return next(new HttpError({ message: `User with id ${authorId} doesn't exist`, code: 404 }))
 
   let insertedId
   try {

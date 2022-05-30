@@ -13,6 +13,7 @@ const getAllUsers = async (req, res, next) => {
 }
 
 const addUser = async (req, res, next) => {
+  if (!req.body.username) return next(new HttpError({ message: 'username is required for user creation', code: 400 }))
   const foundUser = await getUserByNameDB(req.body.username)
   if (foundUser) return next(new HttpError({ message: 'user already exists', code: 400 }))
 

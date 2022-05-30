@@ -6,7 +6,7 @@ const logsController = async (req, res, next) => {
   let count
 
   try {
-    logs = await getUserLogsDB(req.params._id, req.query.from, req.query.to ? req.query.to : null, +req.query.limit)
+    logs = await getUserLogsDB(req.params._id, req.query.from, req.query.to, +req.query.limit)
   } catch (err) {
     return next(new HttpError({ message: err.message, code: 500 }))
   }
